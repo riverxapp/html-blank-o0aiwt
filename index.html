@@ -1,66 +1,567 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Edit Me</title>
+  <title>PeakForm Coaching | Fitness coaching that fits real life</title>
+  <meta name="description" content="A premium fitness coaching landing page for busy people who want a stronger body, better habits, and a plan that actually works in real life." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    };
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
   <style>
     :root {
       color-scheme: light;
     }
 
-    * {
-      box-sizing: border-box;
+    html {
+      overflow-x: clip;
     }
 
     body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      background: #ffffff;
-      color: #111111;
-      font-family: "Inter", sans-serif;
+      overflow-x: clip;
     }
 
-    main {
-      width: min(28rem, calc(100vw - 2rem));
-      text-align: center;
+    .font-display {
+      font-family: "Fraunces", serif;
     }
 
-    .icon {
-      width: 3rem;
-      height: 3rem;
-      margin: 0 auto 1rem;
-      display: block;
-      color: #111111;
+    .font-body {
+      font-family: "Manrope", system-ui, sans-serif;
     }
 
-    h1 {
-      margin: 0 0 0.5rem;
-      font-size: 1.5rem;
-      font-weight: 600;
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(14px);
     }
 
-    p {
-      margin: 0;
-      font-size: 1rem;
-      line-height: 1.5;
-      color: #444444;
+    .dark .glass-panel {
+      background: rgba(9, 12, 18, 0.72);
+    }
+
+    .hero-grid {
+      background:
+        radial-gradient(circle at top left, rgba(34, 197, 94, 0.16), transparent 28%),
+        radial-gradient(circle at top right, rgba(59, 130, 246, 0.16), transparent 24%),
+        linear-gradient(180deg, rgba(15, 23, 42, 0.05), transparent 42%);
+    }
+
+    .section-ring {
+      position: relative;
+    }
+
+    .section-ring::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 1.5rem;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      pointer-events: none;
+    }
+
+    .dark .section-ring::before {
+      border-color: rgba(148, 163, 184, 0.12);
+    }
+
+    .metric-card {
+      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+    }
+
+    .dark .metric-card {
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.26);
+    }
+
+    .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 280ms ease, opacity 240ms ease;
+      opacity: 0;
+    }
+
+    .faq-item[data-open="true"] .faq-content {
+      opacity: 1;
+    }
+
+    .toggle-icon {
+      transition: transform 220ms ease;
+    }
+
+    .faq-item[data-open="true"] .toggle-icon {
+      transform: rotate(45deg);
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 600ms ease, transform 600ms ease;
+    }
+
+    .fade-in.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .faq-content,
+      .toggle-icon,
+      .fade-in {
+        transition: none !important;
+      }
+
+      .fade-in {
+        opacity: 1;
+        transform: none;
+      }
     }
   </style>
 </head>
-<body>
-  <main>
-    <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M12 3L4 7V12C4 17 7.4 20.9 12 22C16.6 20.9 20 17 20 12V7L12 3Z" stroke="currentColor" stroke-width="1.5"/>
-      <path d="M9.5 12L11.25 13.75L15 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <h1>Open for Editing</h1>
-    <p>Agent: edit this page freely and keep it simple.</p>
+<body class="font-body bg-slate-50 text-slate-950 antialiased dark:bg-slate-950 dark:text-slate-50">
+  <header class="sticky top-0 z-50 border-b border-slate-200/70 bg-white/80 backdrop-blur dark:border-slate-800/70 dark:bg-slate-950/75">
+    <div class="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+      <a href="#top" class="flex items-center gap-3">
+        <span class="grid h-10 w-10 place-items-center rounded-2xl bg-slate-950 text-sm font-semibold text-white shadow-lg shadow-slate-950/20 dark:bg-white dark:text-slate-950">PF</span>
+        <span class="leading-tight">
+          <span class="block text-sm font-semibold tracking-[0.2em] text-slate-500 uppercase dark:text-slate-400">PeakForm</span>
+          <span class="block text-base font-semibold text-slate-950 dark:text-white">Coaching</span>
+        </span>
+      </a>
+
+      <nav class="hidden items-center gap-8 md:flex" aria-label="Primary">
+        <a href="#results" class="text-sm font-medium text-slate-600 transition hover:text-slate-950 dark:text-slate-300 dark:hover:text-white">Results</a>
+        <a href="#method" class="text-sm font-medium text-slate-600 transition hover:text-slate-950 dark:text-slate-300 dark:hover:text-white">Method</a>
+        <a href="#plans" class="text-sm font-medium text-slate-600 transition hover:text-slate-950 dark:text-slate-300 dark:hover:text-white">Plans</a>
+        <a href="#faq" class="text-sm font-medium text-slate-600 transition hover:text-slate-950 dark:text-slate-300 dark:hover:text-white">FAQ</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button id="themeToggle" type="button" class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:focus-visible:ring-offset-slate-950" aria-label="Toggle dark mode">
+          <span class="theme-icon" aria-hidden="true">◐</span>
+          <span class="hidden sm:inline">Theme</span>
+        </button>
+        <button id="menuToggle" type="button" class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white p-3 text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 md:hidden dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:focus-visible:ring-offset-slate-950" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="hidden border-t border-slate-200 px-4 py-4 dark:border-slate-800 md:hidden">
+      <nav class="flex flex-col gap-3" aria-label="Mobile">
+        <a href="#results" class="rounded-xl px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-900">Results</a>
+        <a href="#method" class="rounded-xl px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-900">Method</a>
+        <a href="#plans" class="rounded-xl px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-900">Plans</a>
+        <a href="#faq" class="rounded-xl px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-900">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero-grid">
+      <div class="mx-auto grid w-full max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-24">
+        <div class="flex flex-col justify-center">
+          <div class="fade-in inline-flex w-fit items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-700 dark:border-emerald-900/70 dark:bg-emerald-950/40 dark:text-emerald-300">
+            <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+            Coaching for real life, not perfect weeks
+          </div>
+          <h1 class="fade-in mt-6 max-w-3xl font-display text-5xl leading-[0.95] tracking-tight text-slate-950 sm:text-6xl lg:text-[4.75rem] dark:text-white">
+            Train with a plan that works when life gets busy.
+          </h1>
+          <p class="fade-in mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">
+            PeakForm pairs smart programming, nutrition guidance, and weekly accountability so you can build strength, lose fat, and stay consistent without guessing what to do next.
+          </p>
+          <div class="fade-in mt-8 flex flex-col gap-3 sm:flex-row">
+            <a href="#plans" class="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-slate-950/20 transition hover:-translate-y-0.5 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200 dark:focus-visible:ring-offset-slate-950">
+              Start your coaching plan
+            </a>
+            <a href="#results" class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-3.5 text-sm font-semibold text-slate-800 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100 dark:focus-visible:ring-offset-slate-950">
+              See what clients improve
+            </a>
+          </div>
+
+          <div class="fade-in mt-10 grid gap-4 sm:grid-cols-3">
+            <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+              <div class="text-2xl font-bold text-slate-950 dark:text-white">1:1</div>
+              <div class="mt-1 text-sm text-slate-500 dark:text-slate-400">Personal coaching touchpoints</div>
+            </div>
+            <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+              <div class="text-2xl font-bold text-slate-950 dark:text-white">7 days</div>
+              <div class="mt-1 text-sm text-slate-500 dark:text-slate-400">Average onboarding timeline</div>
+            </div>
+            <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+              <div class="text-2xl font-bold text-slate-950 dark:text-white">100%</div>
+              <div class="mt-1 text-sm text-slate-500 dark:text-slate-400">Built around your schedule</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fade-in relative">
+          <div class="absolute -left-4 top-8 h-28 w-28 rounded-full bg-emerald-400/20 blur-3xl"></div>
+          <div class="absolute -right-4 bottom-6 h-28 w-28 rounded-full bg-blue-400/20 blur-3xl"></div>
+          <div class="glass-panel metric-card section-ring relative overflow-hidden rounded-[2rem] border border-white/60 p-6 shadow-2xl dark:border-slate-800/60">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">This week’s focus</p>
+                <h2 class="mt-2 text-2xl font-display text-slate-950 dark:text-white">Simple, sustainable progress</h2>
+              </div>
+              <div class="rounded-2xl bg-emerald-500 px-3 py-2 text-sm font-semibold text-white">Live</div>
+            </div>
+
+            <div class="mt-6 grid gap-4 sm:grid-cols-2">
+              <div class="rounded-2xl bg-slate-950 p-5 text-white dark:bg-slate-800">
+                <div class="text-sm text-slate-300">Training adherence</div>
+                <div class="mt-3 text-4xl font-bold">4 / 4</div>
+                <div class="mt-2 text-sm text-slate-300">Sessions completed this week</div>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
+                <div class="text-sm text-slate-500 dark:text-slate-400">Next check-in</div>
+                <div class="mt-3 text-2xl font-bold text-slate-950 dark:text-white">Friday, 8:00 AM</div>
+                <div class="mt-2 text-sm text-slate-500 dark:text-slate-400">Adjust the plan, then keep moving</div>
+              </div>
+            </div>
+
+            <div class="mt-6 grid gap-4 sm:grid-cols-3">
+              <div class="rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
+                <div class="text-sm text-slate-500 dark:text-slate-400">Focus</div>
+                <div class="mt-1 font-semibold text-slate-950 dark:text-white">Strength</div>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
+                <div class="text-sm text-slate-500 dark:text-slate-400">Nutrition</div>
+                <div class="mt-1 font-semibold text-slate-950 dark:text-white">High protein</div>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
+                <div class="text-sm text-slate-500 dark:text-slate-400">Recovery</div>
+                <div class="mt-1 font-semibold text-slate-950 dark:text-white">Sleep audit</div>
+              </div>
+            </div>
+
+            <div class="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-950">
+              <div class="flex items-start gap-4">
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=320&q=80" alt="Coach reviewing a training plan with a client" class="h-16 w-16 rounded-2xl object-cover" />
+                <div>
+                  <p class="text-sm font-semibold text-slate-950 dark:text-white">Coach’s note</p>
+                  <p class="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                    Your plan should fit your calendar, not the other way around. That’s how consistency actually sticks.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="results" class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+        <div class="fade-in">
+          <p class="text-sm font-semibold uppercase tracking-[0.28em] text-emerald-600 dark:text-emerald-400">Social proof</p>
+          <h2 class="mt-4 max-w-xl font-display text-3xl leading-tight text-slate-950 sm:text-4xl dark:text-white">
+            Results are easier to trust when the process is clear.
+          </h2>
+          <p class="mt-4 max-w-xl text-base leading-7 text-slate-600 dark:text-slate-300">
+            Clients come for body composition changes, better energy, and confidence in the gym. They stay because the coaching stays practical.
+          </p>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <article class="fade-in rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+            <div class="text-sm font-semibold text-emerald-600 dark:text-emerald-400">Consistent check-ins</div>
+            <h3 class="mt-3 text-xl font-semibold text-slate-950 dark:text-white">Weekly feedback that keeps you on track</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">You get form notes, progress reviews, and next-step adjustments without waiting a month for answers.</p>
+          </article>
+          <article class="fade-in rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+            <div class="text-sm font-semibold text-blue-600 dark:text-blue-400">Flexible programming</div>
+            <h3 class="mt-3 text-xl font-semibold text-slate-950 dark:text-white">Training that adapts to travel, work, and family</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">When the week changes, your plan changes with it, so momentum never has to restart from zero.</p>
+          </article>
+          <article class="fade-in rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+            <div class="text-sm font-semibold text-amber-600 dark:text-amber-400">Nutrition support</div>
+            <h3 class="mt-3 text-xl font-semibold text-slate-950 dark:text-white">No food rules that make normal life harder</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">Simple meal targets and habit support help you eat well without becoming obsessive or all-or-nothing.</p>
+          </article>
+          <article class="fade-in rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+            <div class="text-sm font-semibold text-violet-600 dark:text-violet-400">Confidence building</div>
+            <h3 class="mt-3 text-xl font-semibold text-slate-950 dark:text-white">A plan that makes the gym feel less intimidating</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">Every session has a clear purpose, so you know what to do, why you’re doing it, and when to progress.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="method" class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div class="fade-in rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+        <div class="max-w-2xl">
+          <p class="text-sm font-semibold uppercase tracking-[0.28em] text-emerald-600 dark:text-emerald-400">Method</p>
+          <h2 class="mt-4 font-display text-3xl leading-tight text-slate-950 sm:text-4xl dark:text-white">Three steps. Clear coaching. No guesswork.</h2>
+        </div>
+
+        <div class="mt-10 grid gap-6 lg:grid-cols-3">
+          <article class="rounded-3xl bg-slate-50 p-6 dark:bg-slate-950">
+            <div class="text-sm font-semibold text-slate-500 dark:text-slate-400">Step 01</div>
+            <h3 class="mt-3 text-xl font-semibold text-slate-950 dark:text-white">Audit your starting point</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">We map your training history, schedule, habits, and goals so the plan starts from reality.</p>
+          </article>
+          <article class="rounded-3xl bg-slate-50 p-6 dark:bg-slate-950">
+            <div class="text-sm font-semibold text-slate-500 dark:text-slate-400">Step 02</div>
+            <h3 class="mt-3 text-xl font-semibold text-slate-950 dark:text-white">Build your weekly system</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">Your workouts, nutrition targets, and recovery routines all work together instead of competing for attention.</p>
+          </article>
+          <article class="rounded-3xl bg-slate-50 p-6 dark:bg-slate-950">
+            <div class="text-sm font-semibold text-slate-500 dark:text-slate-400">Step 03</div>
+            <h3 class="mt-3 text-xl font-semibold text-slate-950 dark:text-white">Adjust and compound</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">We review performance, solve friction points, and keep the plan moving as your life changes.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="plans" class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div class="fade-in">
+        <p class="text-sm font-semibold uppercase tracking-[0.28em] text-emerald-600 dark:text-emerald-400">Plans</p>
+        <h2 class="mt-4 font-display text-3xl leading-tight text-slate-950 sm:text-4xl dark:text-white">Choose the level of support you want.</h2>
+        <p class="mt-4 max-w-2xl text-base leading-7 text-slate-600 dark:text-slate-300">Every plan includes coaching that is direct, personal, and designed to keep you moving forward.</p>
+      </div>
+
+      <div class="mt-10 grid gap-6 lg:grid-cols-3">
+        <article class="fade-in rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          <div class="text-sm font-semibold text-slate-500 dark:text-slate-400">Foundation</div>
+          <h3 class="mt-3 text-2xl font-display text-slate-950 dark:text-white">Self-guided with structure</h3>
+          <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">For people who want expert programming and a simple way to stay accountable.</p>
+          <div class="mt-6 text-4xl font-bold text-slate-950 dark:text-white">$149</div>
+          <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">per month</p>
+          <ul class="mt-6 space-y-3 text-sm text-slate-600 dark:text-slate-300">
+            <li>• Personalized training plan</li>
+            <li>• Monthly progress review</li>
+            <li>• Nutrition habits guide</li>
+          </ul>
+          <a href="#contact" class="mt-8 inline-flex w-full items-center justify-center rounded-full border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-800 transition hover:-translate-y-0.5 hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:border-slate-800 dark:text-slate-100 dark:hover:bg-slate-800 dark:focus-visible:ring-offset-slate-950">Get started</a>
+        </article>
+
+        <article class="fade-in rounded-[2rem] border border-emerald-200 bg-emerald-50 p-7 shadow-lg shadow-emerald-500/10 dark:border-emerald-900/60 dark:bg-emerald-950/30">
+          <div class="inline-flex rounded-full bg-emerald-600 px-3 py-1 text-xs font-bold uppercase tracking-[0.2em] text-white">Most popular</div>
+          <h3 class="mt-4 text-2xl font-display text-slate-950 dark:text-white">Coaching that stays close</h3>
+          <p class="mt-3 text-sm leading-6 text-slate-700 dark:text-slate-300">Best for busy clients who want weekly direction, faster adjustments, and a coach in their corner.</p>
+          <div class="mt-6 text-4xl font-bold text-slate-950 dark:text-white">$299</div>
+          <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">per month</p>
+          <ul class="mt-6 space-y-3 text-sm text-slate-700 dark:text-slate-300">
+            <li>• Full programming + nutrition support</li>
+            <li>• Weekly check-in and feedback</li>
+            <li>• Form review and habit coaching</li>
+            <li>• Fast plan adjustments</li>
+          </ul>
+          <a href="#contact" class="mt-8 inline-flex w-full items-center justify-center rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200 dark:focus-visible:ring-offset-slate-950">Book a discovery call</a>
+        </article>
+
+        <article class="fade-in rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          <div class="text-sm font-semibold text-slate-500 dark:text-slate-400">Performance</div>
+          <h3 class="mt-3 text-2xl font-display text-slate-950 dark:text-white">Hands-on support for bigger goals</h3>
+          <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">For people chasing a specific event, physique target, or performance milestone.</p>
+          <div class="mt-6 text-4xl font-bold text-slate-950 dark:text-white">$449</div>
+          <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">per month</p>
+          <ul class="mt-6 space-y-3 text-sm text-slate-600 dark:text-slate-300">
+            <li>• Everything in Coaching</li>
+            <li>• Weekly planning calls</li>
+            <li>• Competition or event prep</li>
+            <li>• Priority support</li>
+          </ul>
+          <a href="#contact" class="mt-8 inline-flex w-full items-center justify-center rounded-full border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-800 transition hover:-translate-y-0.5 hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:border-slate-800 dark:text-slate-100 dark:hover:bg-slate-800 dark:focus-visible:ring-offset-slate-950">Talk through your goals</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="faq" class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div class="fade-in rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+        <div class="max-w-2xl">
+          <p class="text-sm font-semibold uppercase tracking-[0.28em] text-emerald-600 dark:text-emerald-400">FAQ</p>
+          <h2 class="mt-4 font-display text-3xl leading-tight text-slate-950 sm:text-4xl dark:text-white">A few common questions, answered plainly.</h2>
+        </div>
+
+        <div class="mt-8 space-y-4">
+          <article class="faq-item rounded-2xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-950" data-open="true">
+            <button type="button" class="faq-trigger flex w-full items-center justify-between gap-4 text-left" aria-expanded="true">
+              <span class="text-base font-semibold text-slate-950 dark:text-white">Do I need to be experienced in the gym?</span>
+              <span class="toggle-icon text-2xl leading-none text-slate-500 dark:text-slate-400" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-content pt-4">
+              <p class="max-w-3xl text-sm leading-6 text-slate-600 dark:text-slate-300">No. Coaching works for beginners and experienced lifters alike. The plan is based on your current level and built to progress safely.</p>
+            </div>
+          </article>
+
+          <article class="faq-item rounded-2xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-950" data-open="false">
+            <button type="button" class="faq-trigger flex w-full items-center justify-between gap-4 text-left" aria-expanded="false">
+              <span class="text-base font-semibold text-slate-950 dark:text-white">How much time do workouts take?</span>
+              <span class="toggle-icon text-2xl leading-none text-slate-500 dark:text-slate-400" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-content pt-4">
+              <p class="max-w-3xl text-sm leading-6 text-slate-600 dark:text-slate-300">Most sessions land between 45 and 70 minutes, with adjustments for your schedule and recovery needs.</p>
+            </div>
+          </article>
+
+          <article class="faq-item rounded-2xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-950" data-open="false">
+            <button type="button" class="faq-trigger flex w-full items-center justify-between gap-4 text-left" aria-expanded="false">
+              <span class="text-base font-semibold text-slate-950 dark:text-white">Will you help with nutrition too?</span>
+              <span class="toggle-icon text-2xl leading-none text-slate-500 dark:text-slate-400" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-content pt-4">
+              <p class="max-w-3xl text-sm leading-6 text-slate-600 dark:text-slate-300">Yes. You’ll get straightforward nutrition guidance, habits, and adjustments that support your training without making food stressful.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div class="fade-in rounded-[2rem] bg-slate-950 px-6 py-10 text-white shadow-2xl shadow-slate-950/20 sm:px-10 dark:bg-white dark:text-slate-950">
+        <div class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.28em] text-emerald-400 dark:text-emerald-700">Final CTA</p>
+            <h2 class="mt-4 max-w-2xl font-display text-3xl leading-tight sm:text-4xl">Ready for a coaching plan that supports your real schedule?</h2>
+            <p class="mt-4 max-w-2xl text-base leading-7 text-slate-300 dark:text-slate-700">Book a call, share your goals, and get a clear next step within one business day.</p>
+          </div>
+
+          <div class="flex flex-col gap-3 sm:flex-row lg:flex-col">
+            <a href="mailto:hello@peakform.co" class="inline-flex items-center justify-center rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-slate-950 transition hover:-translate-y-0.5 hover:bg-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 dark:bg-slate-950 dark:text-white dark:hover:bg-slate-800 dark:focus-visible:ring-offset-white">
+              Email the coach
+            </a>
+            <a href="#top" class="inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 dark:border-slate-950 dark:text-slate-950 dark:hover:bg-slate-100 dark:focus-visible:ring-offset-white">
+              Back to top
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer class="border-t border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950">
+    <div class="mx-auto grid w-full max-w-7xl gap-6 px-4 py-10 sm:px-6 lg:grid-cols-[1fr_auto] lg:px-8">
+      <div>
+        <div class="text-lg font-semibold text-slate-950 dark:text-white">PeakForm Coaching</div>
+        <p class="mt-2 max-w-xl text-sm leading-6 text-slate-600 dark:text-slate-400">
+          Coaching for stronger habits, better training, and a body that keeps up with your life.
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-4 text-sm font-medium text-slate-600 dark:text-slate-400">
+        <a href="#results" class="transition hover:text-slate-950 dark:hover:text-white">Results</a>
+        <a href="#method" class="transition hover:text-slate-950 dark:hover:text-white">Method</a>
+        <a href="#plans" class="transition hover:text-slate-950 dark:hover:text-white">Plans</a>
+        <a href="#faq" class="transition hover:text-slate-950 dark:hover:text-white">FAQ</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const themeToggle = document.getElementById('themeToggle');
+      const menuToggle = document.getElementById('menuToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const faqItems = Array.from(document.querySelectorAll('.faq-item'));
+      const fadeEls = Array.from(document.querySelectorAll('.fade-in'));
+
+      function setTheme(nextTheme) {
+        const isDark = nextTheme === 'dark';
+        root.classList.toggle('dark', isDark);
+        localStorage.setItem('peakform-theme', nextTheme);
+        if (themeToggle) {
+          themeToggle.setAttribute('aria-pressed', String(isDark));
+          themeToggle.querySelector('.theme-icon').textContent = isDark ? '☀' : '◐';
+        }
+      }
+
+      function initTheme() {
+        const saved = localStorage.getItem('peakform-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(saved || (prefersDark ? 'dark' : 'light'));
+
+        themeToggle?.addEventListener('click', () => {
+          const isDark = root.classList.contains('dark');
+          setTheme(isDark ? 'light' : 'dark');
+        });
+      }
+
+      function initMobileMenu() {
+        if (!menuToggle || !mobileMenu) return;
+        menuToggle.addEventListener('click', () => {
+          const isOpen = !mobileMenu.classList.contains('hidden');
+          mobileMenu.classList.toggle('hidden');
+          menuToggle.setAttribute('aria-expanded', String(!isOpen));
+        });
+
+        mobileMenu.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+
+      function setFaqState(item, open) {
+        const trigger = item.querySelector('.faq-trigger');
+        const content = item.querySelector('.faq-content');
+        item.dataset.open = String(open);
+        trigger.setAttribute('aria-expanded', String(open));
+        content.style.maxHeight = open ? `${content.scrollHeight}px` : '0px';
+      }
+
+      function initFaq() {
+        faqItems.forEach((item) => {
+          const trigger = item.querySelector('.faq-trigger');
+          const content = item.querySelector('.faq-content');
+          const open = item.dataset.open === 'true';
+          content.style.maxHeight = open ? `${content.scrollHeight}px` : '0px';
+
+          trigger.addEventListener('click', () => {
+            const nextOpen = item.dataset.open !== 'true';
+            faqItems.forEach((other) => {
+              if (other !== item) setFaqState(other, false);
+            });
+            setFaqState(item, nextOpen);
+          });
+        });
+      }
+
+      function initReveal() {
+        if (!('IntersectionObserver' in window)) {
+          fadeEls.forEach((el) => el.classList.add('is-visible'));
+          return;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.16 });
+
+        fadeEls.forEach((el) => observer.observe(el));
+      }
+
+      window.addEventListener('resize', () => {
+        faqItems.forEach((item) => {
+          if (item.dataset.open === 'true') {
+            const content = item.querySelector('.faq-content');
+            content.style.maxHeight = `${content.scrollHeight}px`;
+          }
+        });
+      });
+
+      initTheme();
+      initMobileMenu();
+      initFaq();
+      initReveal();
+    })();
+  </script>
 </body>
 </html>
